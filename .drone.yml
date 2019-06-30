@@ -1,0 +1,8 @@
+kind: pipeline
+name: MaestroCI Build Bot
+
+steps:
+- name: test
+  image: ubuntu:rolling
+  commands:
+  - bash ./runner.sh
