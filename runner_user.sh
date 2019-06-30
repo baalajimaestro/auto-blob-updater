@@ -18,9 +18,9 @@ sudo python3 get-pip.py > /dev/null 2>&1
 sudo python3 -m pip install requests  > /dev/null 2>&1
 export LOC=$(cat /tmp/loc)
 echo "Repo initialised......."
-repo init -u git://github.com/LineageOS/android.git -b lineage-16.0 > /dev/null 2>&1
+repo init -u git://github.com/LineageOS/android.git -b lineage-16.0 --depth=1 > /dev/null 2>&1
 echo "Repo Syncing started......"
-repo sync -j$(nproc) > /dev/null 2>&1
+repo sync -j20 --no-tags --no-clone-bundle -c > /dev/null 2>&1
 echo "Repo Synced....."
 git clone https://github.com/baalajimaestro/LineageOS_DT device/xiaomi/whyred > /dev/null 2>&1
 # git clone https://github.com/ResurrectionRemix-Devices/vendor_xiaomi_whyred vendor/xiaomi/whyred > /dev/null 2>&1
