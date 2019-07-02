@@ -1,3 +1,4 @@
+
 #!/bin/bash
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
@@ -61,6 +62,8 @@ dt()
 {
 git clone https://github.com/GuaiYiHu/android_device_xiaomi_violet device/xiaomi/violet > /dev/null 2>&1
 cd device/xiaomi/violet
+git clone https://github.com/GuaiYiHu/android_vendor_xiaomi_violet vendor/xiaomi/violet > /dev/null 2>&1
+cd device/xiaomi/violet
 }
 ##### Fetch MIUI-Chinese ROM latest
 rom()
@@ -113,6 +116,7 @@ git add .
 git checkout -b $(cat /tmp/version)
 git commit -m "[RashedCI]: Re-gen Blobs" --signoff
 git remote add origin https://rashedsahaji:$(cat /tmp/GH_TOKEN)@github.com/rashedsahaji/vendor_xiaomi_violet.git
+git remote rm origin
 git push --force origin $(cat /tmp/version)
 tg_sendinfo "<code>Checked out and pushed Vendor Blobs for MIUI Version $(cat /tmp/version)</code>"
 echo "Job Successful!"
