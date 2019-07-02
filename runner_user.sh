@@ -63,7 +63,6 @@ dt()
 git clone https://github.com/GuaiYiHu/android_device_xiaomi_violet device/xiaomi/violet > /dev/null 2>&1
 cd device/xiaomi/violet
 git clone https://github.com/GuaiYiHu/android_vendor_xiaomi_violet vendor/xiaomi/violet > /dev/null 2>&1
-cd device/xiaomi/violet
 }
 ##### Fetch MIUI-Chinese ROM latest
 rom()
