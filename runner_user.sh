@@ -60,7 +60,7 @@ echo -e "\e[32mRepo Synced....."
 dt()
 {
 git clone https://github.com/GuaiYiHu/android_device_xiaomi_violet device/xiaomi/violet > /dev/null 2>&1
-cd device/xiaomi/whyred
+cd device/xiaomi/violet
 }
 ##### Fetch MIUI-Chinese ROM latest
 rom()
