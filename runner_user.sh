@@ -117,7 +117,8 @@ git commit -m "[RashedCI]: Re-gen Blobs" --signoff
 git remote add origin https://rashedsahaji:$(cat /tmp/GH_TOKEN)@github.com/rashedsahaji/vendor_xiaomi_violet.git
 git remote rm origin
 git push --force origin $(cat /tmp/version)
-tg_sendinfo "<code>Checked out and pushed Vendor Blobs for MIUI Version $(cat /tmp/version)</code>"
+tg_sendinfo "<code>Checked out and pushed Vendor Blobs for MIUI Version $(cat /tmp/version)</code>
+Check source here: https://github.com/rashedsahaji/vendor_xiaomi_violet.git"
 echo "Job Successful!"
 }
 
