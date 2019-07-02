@@ -60,6 +60,7 @@ echo -e "\e[32mRepo Synced....."
 dt()
 {
 git clone https://github.com/GuaiYiHu/android_device_xiaomi_whyred device/xiaomi/whyred > /dev/null 2>&1
+git clone https://github.com/GuaiYiHu/android_vendor_xiaomi_whyred vendor/xiaomi/whyred > /dev/null 2>&1
 cd device/xiaomi/whyred
 }
 ##### Fetch MIUI-Chinese ROM latest
@@ -112,6 +113,7 @@ git init
 git add .
 git checkout -b $(cat /tmp/version)
 git commit -m "[MaestroCI]: Re-gen Blobs" --signoff
+git remote rm origin
 git remote add origin https://baalajimaestro:$(cat /tmp/GH_TOKEN)@github.com/baalajimaestro/vendor_xiaomi_whyred.git
 git push --force origin $(cat /tmp/version)
 tg_sendinfo "<code>Checked out and pushed Vendor Blobs for MIUI Version $(cat /tmp/version)</code>"
