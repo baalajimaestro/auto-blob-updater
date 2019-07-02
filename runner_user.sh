@@ -16,7 +16,7 @@ build_env()
 . "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"/telegram
 TELEGRAM_TOKEN=$(cat /tmp/tg_token)
 export TELEGRAM_TOKEN
-tg_sendinfo "<code>[MaestroCI]: Vendor Cron Job rolled!</code>"
+tg_sendinfo "<code>[RashedCI]: Vendor Cron Job rolled!</code>"
 cd ~
 git clone https://github.com/akhilnarang/scripts > /dev/null 2>&1
 cd scripts
@@ -35,8 +35,8 @@ build_conf()
 {
 mkdir repo
 cd repo
-git config --global user.email "baalajimaestro@computer4u.com"
-git config --global user.name "baalajimaestro"
+git config --global user.email "asifrashed2@gmail.com"
+git config --global user.name "rashedsahaji"
 curl -sL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 sudo python3 get-pip.py > /dev/null 2>&1
 sudo python3 -m pip install requests  > /dev/null 2>&1
@@ -59,7 +59,7 @@ echo -e "\e[32mRepo Synced....."
 # git clone https://github.com/baalajimaestro/LineageOS_DT device/xiaomi/whyred > /dev/null 2>&1
 dt()
 {
-git clone https://github.com/GuaiYiHu/android_device_xiaomi_whyred device/xiaomi/whyred > /dev/null 2>&1
+git clone https://github.com/GuaiYiHu/android_device_xiaomi_violet device/xiaomi/violet > /dev/null 2>&1
 cd device/xiaomi/whyred
 }
 ##### Fetch MIUI-Chinese ROM latest
@@ -107,12 +107,12 @@ echo "Blobs Generated!"
 ##### Push the vendor
 push_vendor()
 {
-cd /home/ci/repo/vendor/xiaomi/whyred
+cd /home/ci/repo/vendor/xiaomi/violet
 git init
 git add .
 git checkout -b $(cat /tmp/version)
-git commit -m "[MaestroCI]: Re-gen Blobs" --signoff
-git remote add origin https://baalajimaestro:$(cat /tmp/GH_TOKEN)@github.com/baalajimaestro/vendor_xiaomi_whyred.git
+git commit -m "[RashedCI]: Re-gen Blobs" --signoff
+git remote add origin https://rashedsahaji:$(cat /tmp/GH_TOKEN)@github.com/rashedsahaji/vendor_xiaomi_violet.git
 git push --force origin $(cat /tmp/version)
 tg_sendinfo "<code>Checked out and pushed Vendor Blobs for MIUI Version $(cat /tmp/version)</code>"
 echo "Job Successful!"
