@@ -4,5 +4,8 @@ name: MaestroCI Build Bot
 steps:
 - name: test
   image: ubuntu:rolling
+  environment:
+    API_KEY:
+      from_secret: API_KEY
   commands:
   - bash ./runner.sh
