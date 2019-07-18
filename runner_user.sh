@@ -12,7 +12,8 @@
 build_env() {
     export LOC=$(cat /tmp/loc)
     cd ~
-    sudo apt install patchelf brotli unzip repo p7zip-full p7zip-rar -y > /dev/null 2>&1
+    git config --global http.postBuffer 524288000
+    sudo apt install patchelf brotli unzip repo p7zip-full p7zip-rar zip -y > /dev/null 2>&1
     pip3 install requests > /dev/null 2>&1
     echo "Build Dependencies Installed....."
 }
@@ -57,7 +58,7 @@ build_conf() {
 
 init_repo() {
     echo "Repo initialised......."
-    repo init -u https://github.com/MoKee/android.git -b mkp --depth=1 > /dev/null 2>&1
+    repo init -u https://github.com/PixelExperience/manifest -b pie --depth=1 > /dev/null 2>&1
     echo "Repo Syncing started......"
     repo sync -j$(nproc) --no-tags --no-clone-bundle -c > /dev/null 2>&1
     echo -e "\e[32mRepo Synced....."
@@ -65,8 +66,8 @@ init_repo() {
 
 dt() {
     echo "Cloning device tree......."
-    git clone https://github.com/GuaiYiHu/android_device_xiaomi_whyred device/xiaomi/whyred > /dev/null 2>&1
-    git clone https://github.com/GuaiYiHu/android_vendor_xiaomi_whyred vendor/xiaomi/whyred > /dev/null 2>&1
+    git clone https://github.com/PixelExperience-Devices/device_xiaomi_whyred device/xiaomi/whyred > /dev/null 2>&1
+    git clone https://github.com/PixelExperience-Devices/proprietary_vendor_xiaomi vendor/xiaomi > /dev/null 2>&1
     cd device/xiaomi/whyred
 }
 
