@@ -12,8 +12,15 @@
 build_env() {
     export LOC=$(cat /tmp/loc)
     cd ~
-    git config --global http.postBuffer 524288000
-    sudo apt install patchelf brotli unzip repo p7zip-full p7zip-rar zip -y > /dev/null 2>&1
+    sudo apt install patchelf brotli unzip p7zip-full zip curl wget gpg python python-kerberos -y > /dev/null 2>&1
+    sudo unlink /usr/bin/python
+    sudo ln -s /usr/bin/python2.7 /usr/bin/python
+    sudo curl -sLo /usr/bin/repo https://storage.googleapis.com/git-repo-downloads/repo
+    sudo chmod a+x /usr/bin/repo
+    . /drone/src/telegram
+    TELEGRAM_TOKEN=$(cat /tmp/tg_token)
+    export TELEGRAM_TOKEN
+    tg_sendinfo "<code>[MaestroCI]: Vendor Cron Job rolled!</code>"
     pip3 install requests > /dev/null 2>&1
     echo "Build Dependencies Installed....."
 }
@@ -58,16 +65,16 @@ build_conf() {
 
 init_repo() {
     echo "Repo initialised......."
-    repo init -u https://github.com/PixelExperience/manifest -b pie --depth=1 > /dev/null 2>&1
+    repo init -u git://github.com/AOSiP/platform_manifest.git -b pie --depth=1 > /dev/null 2>&1
     echo "Repo Syncing started......"
-    repo sync -j$(nproc) --no-tags --no-clone-bundle -c > /dev/null 2>&1
+    repo sync --force-sync --current-branch --no-tags --no-clone-bundle --optimized-fetch --prune -j$(nproc) -q > /dev/null 2>&1
     echo -e "\e[32mRepo Synced....."
 }
 
 dt() {
     echo "Cloning device tree......."
-    git clone https://github.com/PixelExperience-Devices/device_xiaomi_whyred device/xiaomi/whyred > /dev/null 2>&1
-    git clone https://github.com/PixelExperience-Devices/proprietary_vendor_xiaomi vendor/xiaomi > /dev/null 2>&1
+    git clone https://github.com/AOSiP-Devices/device_xiaomi_whyred device/xiaomi/whyred > /dev/null 2>&1
+    git clone https://github.com/AOSiP-Devices/proprietary_vendor_xiaomi vendor/xiaomi > /dev/null 2>&1
     cd device/xiaomi/whyred
 }
 
@@ -84,6 +91,7 @@ push_vendor() {
     git commit -m "[MaestroCI]: Re-gen blobs from MIUI $(cat /tmp/version)" --signoff
     git checkout -b $(cat /tmp/version)
     git push --force origin $(cat /tmp/version)
+    tg_sendinfo "<code>Checked out and Pushed Vendor Blobs for MIUI $(cat /tmp/version)</code>"
     echo "Job Successful!"
 }
 

@@ -8,7 +8,7 @@
 #
 # Telegram command container
 
-TELEGRAM="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"/telegramapi
+TELEGRAM=/drone/src/telegramapi
 export TELEGRAM
 # Caster configurations
 MAINGROUP_ID="-1001427544283"
