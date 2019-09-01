@@ -57,8 +57,6 @@ extract() {
 }
 
 build_conf() {
-    mkdir repo
-    cd repo
     git config --global user.email "baalajimaestro@raphielgang.com"
     git config --global user.name "baalajimaestro"
 }
@@ -89,7 +87,7 @@ gen_blob() {
 
 push_vendor() {
     if [ "$(hostname)" == "Android-A320FL-Build-Box" ]; then
-    cd /home/McFy/dyneteve/pe/vendor/xiaomi/whyred
+    cd /home/McFy/dyneteve/peplus/vendor/xiaomi/whyred
     else
     cd ~/repo/vendor/xiaomi/whyred
     fi
