@@ -10,6 +10,7 @@
 
 if [ "$(hostname)" == "Android-A320FL-Build-Box" ]; then
 TELEGRAM=/home/McFy/baalajimaestro/Blobs/auto-blob-updater/telegramapi
+chmod +x /home/McFy/baalajimaestro/Blobs/auto-blob-updater/telegramapi
 else
 TELEGRAM=/drone/src/telegramapi
 fi
