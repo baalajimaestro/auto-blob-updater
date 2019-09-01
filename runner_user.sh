@@ -29,7 +29,7 @@ rom() {
     rm -rf extract
     mkdir extract
     cd extract
-    python3 /home/baalajimaestro/Blobs/auto-blob-updater/get_rom.py
+    python3 /home/McFy/baalajimaestro/Blobs/auto-blob-updater/get_rom.py
     unzip rom.zip -d miui > /dev/null 2>&1
     cd miui
 }
