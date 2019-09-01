@@ -57,7 +57,7 @@ extract() {
 }
 
 build_conf() {
-    git config --global user.email "baalajimaestro@raphielgang.com"
+    git config --global user.email "baalajimaestro@raphielgang.org"
     git config --global user.name "baalajimaestro"
 }
 
