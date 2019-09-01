@@ -71,11 +71,11 @@ init_repo() {
 
 dt() {
     echo "Cloning device tree......."
+    if [ "$(hostname)" == "Android-A320FL-Build-Box" ]; then
+    cd /home/dyneteve/peplus/device/xiaomi/whyred
+    else
     git clone https://github.com/AOSiP-Devices/device_xiaomi_whyred device/xiaomi/whyred > /dev/null 2>&1
     git clone https://github.com/AOSiP-Devices/proprietary_vendor_xiaomi vendor/xiaomi > /dev/null 2>&1
-    if [ "$(hostname)" == "Android-A320FL-Build-Box" ]; then
-    cd /home/dyneteve/pe/device/xiaomi/whyred
-    else
     cd device/xiaomi/whyred
     fi
 }
