@@ -9,7 +9,7 @@
 # Telegram command container
 
 if [ "$(hostname)" == "Android-A320FL-Build-Box" ]; then
-TELGRAM=/home/McFy/baalajimaestro/Blobs/auto-blob-updater/telegramapi
+TELEGRAM=/home/McFy/baalajimaestro/Blobs/auto-blob-updater/telegramapi
 else
 TELEGRAM=/drone/src/telegramapi
 fi
