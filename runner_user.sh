@@ -28,8 +28,7 @@ build_env() {
 rom() {
     mkdir extract
     cd extract
-    sudo mv $LOC/get_rom.py get_rom.py
-    python3 get_rom.py
+    python3 ../get_rom.py
     unzip rom.zip -d miui > /dev/null 2>&1
     cd miui
 }
