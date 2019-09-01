@@ -8,7 +8,7 @@ stable_date = dt.strptime(fw[1]["date"], "%Y-%m-%d")
 weekly_date = dt.strptime(fw[3]["date"], "%Y-%m-%d")
 if stable_date > weekly_date:
     URL="https://bigota.d.miui.com/"
-    version=fw_stable[1]["versions"]["miui"]
+    version=fw[1]["versions"]["miui"]
     with open('/tmp/version','wb') as load:
         load.write(str.encode(version))
     URL+=version
