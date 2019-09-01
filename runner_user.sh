@@ -102,6 +102,7 @@ push_vendor() {
 }
 
 if [ "$(hostname)" == "Android-A320FL-Build-Box" ]; then
+. /home/McFy/baalajimaestro/Blobs/auto-blob-updater/telegram
 cd /home/McFy/baalajimaestro/Blobs
 tg_sendinfo "<code>[MaestroCI]: Vendor Cron Job rolled!</code>"
 rom
