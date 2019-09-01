@@ -92,6 +92,8 @@ push_vendor() {
     cd /home/McFy/dyneteve/peplus/vendor/xiaomi/whyred
     fi
     git remote rm origin
+    git config user.email "baalajimaestro@raphielgang.com"
+    git config user.name "baalajimaestro"
     git remote add origin https://baalajimaestro:${GH_PERSONAL_TOKEN}@github.com/baalajimaestro/vendor_xiaomi_whyred.git
     git add .
     git commit -m "[MaestroCI]: Re-gen blobs from MIUI $(cat /tmp/version)" --signoff
@@ -109,8 +111,6 @@ rom
 dec_brotli
 sdatimg
 extract
-build_conf
-cp /home/McFy/baalajimaestro/proprietary-files.txt /home/dyneteve/pe/device/xiaomi/whyred
 dt
 gen_blob
 push_vendor
