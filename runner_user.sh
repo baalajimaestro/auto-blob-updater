@@ -81,7 +81,7 @@ dt() {
 }
 
 gen_blob() {
-    bash extract-files.sh ~/extract/miui
+    bash extract-files.sh /home/McFy/baalajimaestro/Blobs/extract/miui
     echo "Blobs Generated!"
 }
 
@@ -89,10 +89,10 @@ push_vendor() {
     if [ "$(hostname)" == "Android-A320FL-Build-Box" ]; then
     cd /home/McFy/dyneteve/peplus/vendor/xiaomi/whyred
     else
-    cd ~/repo/vendor/xiaomi/whyred
+    cd /home/McFy/dyneteve/peplus/vendor/xiaomi/whyred
     fi
     git remote rm origin
-    git remote add origin https://baalajimaestro:$(cat /tmp/GH_TOKEN)@github.com/baalajimaestro/vendor_xiaomi_whyred.git
+    git remote add origin https://baalajimaestro:${GH_PERSONAL_TOKEN}@github.com/baalajimaestro/vendor_xiaomi_whyred.git
     git add .
     git commit -m "[MaestroCI]: Re-gen blobs from MIUI $(cat /tmp/version)" --signoff
     git checkout -b $(cat /tmp/version)
