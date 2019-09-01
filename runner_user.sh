@@ -59,7 +59,7 @@ extract() {
 build_conf() {
     mkdir repo
     cd repo
-    git config --global user.email "baalajimaestro@computer4u.com"
+    git config --global user.email "baalajimaestro@raphielgang.com"
     git config --global user.name "baalajimaestro"
 }
 
@@ -75,7 +75,11 @@ dt() {
     echo "Cloning device tree......."
     git clone https://github.com/AOSiP-Devices/device_xiaomi_whyred device/xiaomi/whyred > /dev/null 2>&1
     git clone https://github.com/AOSiP-Devices/proprietary_vendor_xiaomi vendor/xiaomi > /dev/null 2>&1
+    if [ "$(hostname)" == "Android-A320FL-Build-Box" ]; then
+    cd /home/dyneteve/pe/device/xiaomi/whyred
+    else
     cd device/xiaomi/whyred
+    fi
 }
 
 gen_blob() {
@@ -84,7 +88,11 @@ gen_blob() {
 }
 
 push_vendor() {
+    if [ "$(hostname)" == "Android-A320FL-Build-Box" ]; then
+    cd /home/McFy/dyneteve/pe/vendor/xiaomi/whyred
+    else
     cd ~/repo/vendor/xiaomi/whyred
+    fi
     git remote rm origin
     git remote add origin https://baalajimaestro:$(cat /tmp/GH_TOKEN)@github.com/baalajimaestro/vendor_xiaomi_whyred.git
     git add .
@@ -95,6 +103,20 @@ push_vendor() {
     echo "Job Successful!"
 }
 
+if [ "$(hostname)" == "Android-A320FL-Build-Box" ]; then
+cd /home/McFy/baalajimaestro/Blobs
+tg_sendinfo "<code>[MaestroCI]: Vendor Cron Job rolled!</code>"
+rom
+dec_brotli
+sdatimg
+extract
+build_conf
+cp /home/McFy/baalajimaestro/proprietary-files.txt /home/dyneteve/pe/device/xiaomi/whyred
+dt
+gen_blob
+push_vendor
+rm -rf /home/McFy/baalajimaestro/extract
+else
 build_env
 rom
 dec_brotli
@@ -105,3 +127,4 @@ init_repo
 dt
 gen_blob
 push_vendor
+fi
