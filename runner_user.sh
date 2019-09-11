@@ -96,7 +96,7 @@ push_vendor() {
     git config user.name "baalajimaestro"
     git remote add origin https://baalajimaestro:${GH_PERSONAL_TOKEN}@github.com/baalajimaestro/vendor_xiaomi_whyred.git
     git add .
-    git commit -m "[MaestroCI]: Re-gen blobs from MIUI $(cat /tmp/version)" --signoff
+    git commit -m "[MaestroCI]: Re-gen blobs from MIUI $(cat /tmp/version)" --author "hehao <hehao@xiaomi.com>" --signoff
     git checkout -b $(cat /tmp/version)
     git push --force origin $(cat /tmp/version)
     tg_sendinfo "<code>Checked out and Pushed Vendor Blobs for MIUI $(cat /tmp/version)</code>"
