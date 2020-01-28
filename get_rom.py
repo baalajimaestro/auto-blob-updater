@@ -1,9 +1,10 @@
 from requests import get
 from datetime import datetime as dt
-import json
-with open('whyred.json', 'wb') as load:
-    load.write(get("https://raw.githubusercontent.com/XiaomiFirmwareUpdater/xiaomifirmwareupdater.github.io/master/data/devices/latest/whyred.json").content)
-fw = json.loads(open('whyred.json').read())
+import yaml
+
+with open('whyred.yml', 'wb') as load:
+    load.write(get("https://raw.githubusercontent.com/XiaomiFirmwareUpdater/xiaomifirmwareupdater.github.io/master/data/devices/latest/whyred.yml").content)
+fw = yaml.safe_load(open('whyred.yml').read())
 stable_date = dt.strptime(fw[1]["date"], "%Y-%m-%d")
 weekly_date = dt.strptime(fw[3]["date"], "%Y-%m-%d")
 if stable_date > weekly_date:
